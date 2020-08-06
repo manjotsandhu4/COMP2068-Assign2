@@ -50,7 +50,7 @@ const Edit = function (props){
           });
         }
       } catch (error) {
-        toast("The blog was updated successfully", {
+        toast("The blog was created successfully", {
             type: toast.TYPE.SUCCESS
           });
           setRedirect(true);

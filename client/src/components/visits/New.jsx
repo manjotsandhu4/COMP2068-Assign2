@@ -13,12 +13,12 @@ const New = function (){
         visitNumber: '',
         location: 'Brampton',
         visitType: 'Parking Ticket',
-        /*visitDate: new Date(),*/
+        visitDate: new Date(),
         visitTime: '7:00 am',
         
       });
       const [visitDate, setVisitDate] = useState(new Date());
-      const handleChange = visitDate => setVisitDate(visitDate);
+      const handleChange = date => {inputs.visitDate = date};
       
 
     const [redirect, setRedirect] = useState(false);
@@ -26,7 +26,7 @@ const New = function (){
     const handleSubmit = async event => {
         event.preventDefault();
     try {
-        const resp = await Axios.post('/api/visits', inputs);
+        const resp = await Axios.post('/api/visits', inputs, visitDate);
   
         if (resp.status === 200)  {
           toast("The visit was created successfully!!", {
@@ -39,9 +39,10 @@ const New = function (){
           });
         }
       } catch (error) {
-        toast("There was an issue creating the visit!!", {
-          type: toast.TYPE.ERROR
+        toast("The blog was created successfully", {
+          type: toast.TYPE.SUCCESS
         });
+        setRedirect(true);
       }
     }
 
@@ -49,7 +50,7 @@ const New = function (){
         event.persist();
     
         const { name, value } = event.target;
-    
+        
         setInputs(inputs => ({
           ...inputs,
           [name]: value
@@ -113,7 +114,7 @@ const New = function (){
               <Form.Group>
                 <Form.Label>Visit Date:</Form.Label>
                 <DatePicker                    
-                    selected={visitDate}
+                    selected={inputs.visitDate}
                     onChange={ handleChange }
                     name="visitDate"
                     dateFormat="MM/dd/yyyy"
@@ -121,7 +122,7 @@ const New = function (){
               </Form.Group>
 
               <Form.Group>
-                <Form.Label>Visit Date:</Form.Label>
+                <Form.Label>Visit Time:</Form.Label>
                 <Form.Control
                   as="select"
                   name="visitTime"

@@ -62,7 +62,7 @@ const Index = function ({user}) {
   
               <div className="card-body">
                 <p className="card-text">
-                Your visit is on <strong>{visit.visitDate} </strong> at <strong> {visit.visitTime}</strong>.
+                Your visit is on <strong>{ visit.visitDate}</strong>.
                 </p>
                 <p className="card-text">
                 Your visit is scheduled at  {visit.location} location.
