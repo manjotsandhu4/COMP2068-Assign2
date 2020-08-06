@@ -29,7 +29,7 @@ const Edit = function (props){
     
     useEffect(() => {
         (async () => {
-          const visitResp = await Axios.get(`/visits/${id}`);
+          const visitResp = await Axios.get(`/api/visits/${id}`);
           if (visitResp.status === 200) setInputs(visitResp.data);
         })();
       }, []);
@@ -37,7 +37,7 @@ const Edit = function (props){
     const handleSubmit = async event => {
         event.preventDefault();
     try {
-        const resp = await Axios.post('/visits/update', inputs);
+        const resp = await Axios.post('/api/visits/update', inputs);
   
         if (resp.status === 200)  {
           toast("The visit was updated successfully!!", {

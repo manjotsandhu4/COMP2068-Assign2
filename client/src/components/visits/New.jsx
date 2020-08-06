@@ -26,7 +26,7 @@ const New = function (){
     const handleSubmit = async event => {
         event.preventDefault();
     try {
-        const resp = await Axios.post('/visits', inputs);
+        const resp = await Axios.post('/api/visits', inputs);
   
         if (resp.status === 200)  {
           toast("The visit was created successfully!!", {

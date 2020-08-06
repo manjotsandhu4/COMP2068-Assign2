@@ -16,14 +16,14 @@ const Index = function ({user}) {
   
     //Function to get visits
     const getVisits = async () => {
-      const visitsResp = await Axios.get('/visits');
+      const visitsResp = await Axios.get('/api/visits');
       if (visitsResp.status === 200) setVisits(visitsResp.data);
     };
     
     //delete visit function
     const deleteVisit = async visit => {
         try {
-          const resp = await Axios.post('/visits/delete', {
+          const resp = await Axios.post('/api/visits/delete', {
             id: visit._id
           });
     
