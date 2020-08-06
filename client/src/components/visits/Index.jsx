@@ -47,7 +47,7 @@ const Index = function ({user}) {
               <div className="card-header clearfix">
                 <div className="float-left">
                   <h5 className="card-title">
-                    {visit.title}
+                    {visit.visitNumber}
                   </h5>
   
                   {visit.user ? (
@@ -65,7 +65,7 @@ const Index = function ({user}) {
                 Your visit is on <strong>{visit.visitDate} </strong> at <strong> {visit.visitTime}</strong>.
                 </p>
                 <p className="card-text">
-                Your visit is scheduled at  {visit.location}location.
+                Your visit is scheduled at  {visit.location} location.
                 </p>
               </div>
   

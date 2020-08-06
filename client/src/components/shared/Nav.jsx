@@ -20,18 +20,33 @@ function Nav({user}){
       <li className="nav-item">
         <Link to="/about" className="nav-link">About</Link>
       </li>
+      <li className="nav-item dropdown">
+            <a href="" className="nav-link dropdown-toggle" id="visitsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Visits
+            </a>
 
+            <div className="dropdown-menu" aria-labelledby="visitsDropdown">
+              <Link to="/visits" className="dropdown-item">Archive</Link>
+
+              {user ? (
+                <Fragment>
+                  <div className="dropdown-divider"></div>
+                  <Link to="/visits/new" className="dropdown-item">New Visit</Link>
+                </Fragment>
+              ) : null}
+            </div>
+          </li>    
       
     </ul>  
     <ul className="navbar-nav">
-         
+        {user ? (
             <li className="nav-item">
               <Link to="/logout" className="nav-link">
                 <i className="fa fa-sign-out"></i>
                 Logout
               </Link>
             </li>
-          
+        ) : (  
             <Fragment>
               <li className="nav-item">
                 <Link to="/register" className="nav-link">
@@ -47,8 +62,8 @@ function Nav({user}){
                 </Link>
               </li>
             </Fragment>
-          
-        </ul> 
+          )}
+    </ul> 
     
   </div>
 </nav>

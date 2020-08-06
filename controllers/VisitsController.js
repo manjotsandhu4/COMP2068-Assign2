@@ -29,8 +29,8 @@ exports.index = async (req, res)=>{
 
     res.status(200).json(visits);
   } catch (error) {
-    res.redirect('/');
-    res.status(400).json({message: 'There was an error fetching blogs', error});
+    
+    res.status(400).json({message: 'There was an error fetching visits', error});
     
   }
 };
@@ -40,15 +40,9 @@ exports.show = async (req, res)=>{
   try {
     const visit = await Visit.findById(req.params.id)
      .populate('user');
-    console.log(visit);
-
-    res.render(`${viewPath}/show`, {
-      pageTitle: visit.visitNumber,
-      visit: visit
-    });
+    res.status(200).json(visit);
   } catch (error) {
-    req.flash('danger', `Sorry we encountered an Error while rendering this Visit:${error}`);
-    res.redirect('/');
+    res.status(400).json({message: "Error in fetching this Visit"});
   }
 };
 
@@ -62,9 +56,8 @@ exports.create = async (req, res)=>{
   try {
     
     const { user: email } = req.session.passport;
-    const user = await User.findOne({email: email});
-    
-    const blog = await Visit.create({user: user._id, ...req.body});
+    const user = await User.findOne({email: email});    
+    const visit = await Visit.create({user: user._id, ...req.body});
 
     res.status(200).json(visit);
   } catch (error) {
@@ -110,13 +103,10 @@ exports.update = async (req, res)=>{
   }
 };
 exports.delete = async (req, res)=>{
-  try {
-    console.log(req.body);
+  try {    
     await Visit.deleteOne({_id: req.body.id});
-    req.flash('success', 'the item was deleted successfully');
-    res.redirect(`/visits`);
+    res.status(200).json({message: "Success"});
   } catch (error) {
-    req.flash('danger', `Sorry we encountered an Error while deleting this Visit:${error}`);
-    res.redirect(`/visits`);
+    res.status(400).json({message:"OOps!! there was an error."});
   }
 };
