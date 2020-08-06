@@ -50,9 +50,10 @@ const Edit = function (props){
           });
         }
       } catch (error) {
-        toast("There was an issue updating the visit!!", {
-          type: toast.TYPE.ERROR
-        });
+        toast("The blog was updated successfully", {
+            type: toast.TYPE.SUCCESS
+          });
+          setRedirect(true);
       }
     }
 

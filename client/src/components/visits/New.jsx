@@ -13,7 +13,7 @@ const New = function (){
         visitNumber: '',
         location: 'Brampton',
         visitType: 'Parking Ticket',
-        visitDate: new Date(),
+        /*visitDate: new Date(),*/
         visitTime: '7:00 am',
         
       });
