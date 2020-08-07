@@ -17,13 +17,12 @@ const Edit = function (props){
         location: '',
         visitType: '',
         visitDate: new Date(),
-        visitTime: '7:00 am',
-        
+        visitTime: '7:00 am'        
       });
 
       const [redirect, setRedirect] = useState(false);
-      const [visitDate, setVisitDate] = useState(new Date());
-      const handleChange = visitDate => setVisitDate(visitDate);
+      /*const [visitDate, setVisitDate] = useState(new Date());
+      const handleChange = visitDate => setVisitDate(visitDate);*/
       
 
     
@@ -124,11 +123,11 @@ const Edit = function (props){
 
               <Form.Group>
                 <Form.Label>Visit Date:</Form.Label>
-                <DatePicker                    
-                    selected={visitDate}
-                    onChange={ handleChange }
-                    name="visitDate"
-                    dateFormat="MM/dd/yyyy"
+                <Form.Control
+                  type="date"
+                  name="visitDate"
+                  onChange={handleInputChange}
+                  value={inputs.visitDate}
                 />                
               </Form.Group>
 

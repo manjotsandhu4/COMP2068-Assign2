@@ -36,7 +36,10 @@ const visitSchema = new mongoose.Schema({
   },
   visitDate:{
     type: Date,    
-    required:true
+    required:true,
+    get: function (val) {
+      return val.toISOString().split('T')[0]
+    }
   },
   visitTime:{
     type: String,

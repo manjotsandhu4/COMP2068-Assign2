@@ -17,8 +17,8 @@ const New = function (){
         visitTime: '7:00 am',
         
       });
-      const [visitDate, setVisitDate] = useState(new Date());
-      const handleChange = date => {inputs.visitDate = date};
+      /*const [visitDate, setVisitDate] = useState(new Date());
+      const handleChange = date => {inputs.visitDate = date};*/
       
 
     const [redirect, setRedirect] = useState(false);
@@ -26,7 +26,7 @@ const New = function (){
     const handleSubmit = async event => {
         event.preventDefault();
     try {
-        const resp = await Axios.post('/api/visits', inputs, visitDate);
+        const resp = await Axios.post('/api/visits', inputs);
   
         if (resp.status === 200)  {
           toast("The visit was created successfully!!", {
@@ -113,12 +113,12 @@ const New = function (){
 
               <Form.Group>
                 <Form.Label>Visit Date:</Form.Label>
-                <DatePicker                    
-                    selected={inputs.visitDate}
-                    onChange={ handleChange }
-                    name="visitDate"
-                    dateFormat="MM/dd/yyyy"
-                />                
+                <Form.Control
+                  type="date"
+                  name="visitDate"
+                  onChange={handleInputChange}
+                  value={inputs.visitDate}
+                />            
               </Form.Group>
 
               <Form.Group>
